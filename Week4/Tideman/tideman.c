@@ -136,8 +136,8 @@ int main(int argc, char *argv[])
     lock_pairs();
 
 
-    //print_preferences(); // ------------------------ tool
-    //print_pairs(); // ------------------------ tool
+    print_preferences(); // ------------------------ tool
+    print_pairs(); // ------------------------ tool
     print_locked(); // ------------------------ tool
 
     print_winner();
@@ -252,8 +252,9 @@ void mergesort(pair* arr, int startIndex, int endIndex)
 void merge(pair* arr, int startIndex, int mid, int endIndex)
 {
     int i = startIndex, j = mid + 1, tempIndex = 0;
-    pair* temp = malloc(endIndex - startIndex + 1);
-    printf("%i", endIndex - startIndex + 1);
+    pair* temp = malloc(sizeof(pair) * (endIndex - startIndex + 1));
+    int memor = endIndex - startIndex + 1;
+    printf("%i ", memor);
     while ((i <= mid) && (j <= endIndex))
     {
         int firstDif = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
@@ -310,11 +311,9 @@ int make_loop(int init_node, int next_node)
     }
     if (looping == 0)
     {
-        printf("Returned 0\n");
         return 0;
     }else
     {
-        printf("Returned 1\n");
         return 1;
     }
 }
