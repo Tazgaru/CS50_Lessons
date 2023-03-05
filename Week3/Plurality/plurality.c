@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     // Loop over all voters
     for (int i = 0; i < voter_count; i++)
     {
-        char* name = malloc(11);
+        char* name;
         name = random_candidate().name;
         printf("Vote: %s\n", name);
 
