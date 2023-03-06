@@ -36,8 +36,8 @@ int main(int argc, char* argv[])
     if (strcmp(argv[1], "5") == 0 || strcmp(argv[1], "6") == 0 || strcmp(argv[1], "7") == 0 || strcmp(argv[1], "8") == 0)
     {
         wordsize = *argv[1] - '0';
-        printf("%i", wordsize);
-    }else
+    }
+    else
     {
         printf("Wordsize must be 5, 6, 7 or 8\n");
         return 1;
@@ -100,6 +100,7 @@ int main(int argc, char* argv[])
             won = 1;
             break;
         }
+        free(guess);
     }
 
     // Print the game's result
@@ -114,7 +115,17 @@ char* get_guess(int wordsize)
     char* guess = "";
 
     // ensure users actually provide a guess that is the correct length
-    // TODO #3
+    guess = malloc(wordsize + 4); // buffer for longer inputs
+
+    do
+    {
+        scanf("%s", guess);
+        if (strlen(guess) != wordsize)
+        {
+            printf("Word must be %i letters long\n", wordsize);
+        }
+        
+    } while (strlen(guess) != wordsize);
 
     return guess;
 }
