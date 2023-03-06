@@ -29,5 +29,18 @@ int main(void)
 
 int convert(char* input)
 {
-    // TODO
+    int len = strlen(input);
+    int answer = 0;
+    int digit;
+    for (int i = 0; i < len; i++)
+    {
+        digit = input[i] - '0';
+        answer += digit;
+
+        if (i != len - 1)
+        {
+            answer *= 10;
+        }
+    }
+    return answer;
 }
