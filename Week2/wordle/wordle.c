@@ -33,7 +33,16 @@ int main(int argc, char* argv[])
     int wordsize = 0;
 
     // ensure argv[1] is either 5, 6, 7, or 8 and store that value in wordsize instead
-    // TODO #2
+    if (strcmp(argv[1], "5") == 0 || strcmp(argv[1], "6") == 0 || strcmp(argv[1], "7") == 0 || strcmp(argv[1], "8") == 0)
+    {
+        wordsize = *argv[1] - '0';
+        printf("%i", wordsize);
+    }else
+    {
+        printf("Wordsize must be 5, 6, 7 or 8\n");
+        return 1;
+    }
+    
 
     // open correct file, each file has exactly LISTSIZE words
     char wl_filename[6];
