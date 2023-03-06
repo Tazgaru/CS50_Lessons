@@ -64,6 +64,7 @@ int main(int argc, char* argv[])
     // pseudorandomly select a word for this game
     srand(time(NULL));
     char* choice = options[rand() % LISTSIZE];
+    printf("%s", choice); // -------------------------------- tools
 
     // allow one more guess than the length of the word
     int guesses = wordsize + 1;
@@ -137,16 +138,30 @@ int check_word(char* guess, int wordsize, int status[], char* choice)
     int score = 0;
 
     // compare guess to choice and score points as appropriate, storing points in status
-    // TODO #5
-
-    // HINTS
-    // iterate over each letter of the guess
-        // iterate over each letter of the choice
-            // compare the current guess letter to the current choice letter
-                // if they're the same position in the word, score EXACT points (green) and break so you don't compare that letter further
-                // if it's in the word, but not the right spot, score CLOSE point (yellow)
-        // keep track of the total score by adding each individual letter's score from above
-
+    for (int i = 0; i < wordsize; i++)
+    {
+        for (int j = 0; j < wordsize; j++)
+        {
+            if (guess[i] == choice[j])
+            {
+                if (i == j)
+                {
+                    status[i] = 2;
+                    score += 2;
+                    break;
+                }
+                else
+                {
+                    status[i] = 1;
+                    score++;
+                    break;
+                }
+                
+            }
+            
+        }
+        
+    }
     return score;
 }
 
