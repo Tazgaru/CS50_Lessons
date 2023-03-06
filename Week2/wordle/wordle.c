@@ -24,8 +24,11 @@ void print_word(char* guess, int wordsize, int status[]);
 
 int main(int argc, char* argv[])
 {
-    // ensure proper usage
-    // TODO #1
+    if (argc != 2)
+    {
+        printf("Usage: ./wordle.exe wordsize\n");
+        return 1;
+    }
 
     int wordsize = 0;
 
