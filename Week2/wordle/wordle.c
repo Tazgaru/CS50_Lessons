@@ -1,4 +1,3 @@
-#include <cs50.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,11 +18,11 @@
 #define RESET   "\e[0;39m"
 
 // user-defined function prototypes
-string get_guess(int wordsize);
-int check_word(string guess, int wordsize, int status[], string choice);
-void print_word(string guess, int wordsize, int status[]);
+char* get_guess(int wordsize);
+int check_word(char* guess, int wordsize, int status[], char* choice);
+void print_word(char* guess, int wordsize, int status[]);
 
-int main(int argc, string argv[])
+int main(int argc, char* argv[])
 {
     // ensure proper usage
     // TODO #1
@@ -53,11 +52,11 @@ int main(int argc, string argv[])
 
     // pseudorandomly select a word for this game
     srand(time(NULL));
-    string choice = options[rand() % LISTSIZE];
+    char* choice = options[rand() % LISTSIZE];
 
     // allow one more guess than the length of the word
     int guesses = wordsize + 1;
-    bool won = false;
+    int won = 0;
 
     // print greeting, using ANSI color codes to demonstrate
     printf(GREEN"This is WORDLE50"RESET"\n");
@@ -67,7 +66,7 @@ int main(int argc, string argv[])
     for (int i = 0; i < guesses; i++)
     {
         // obtain user's guess
-        string guess = get_guess(wordsize);
+        char* guess = get_guess(wordsize);
 
         // array to hold guess status, initially set to zero
         int status[wordsize];
@@ -86,7 +85,7 @@ int main(int argc, string argv[])
         // if they guessed it exactly right, set terminate loop
         if (score == EXACT * wordsize)
         {
-            won = true;
+            won = 1;
             break;
         }
     }
@@ -98,9 +97,9 @@ int main(int argc, string argv[])
     return 0;
 }
 
-string get_guess(int wordsize)
+char* get_guess(int wordsize)
 {
-    string guess = "";
+    char* guess = "";
 
     // ensure users actually provide a guess that is the correct length
     // TODO #3
@@ -108,7 +107,7 @@ string get_guess(int wordsize)
     return guess;
 }
 
-int check_word(string guess, int wordsize, int status[], string choice)
+int check_word(char* guess, int wordsize, int status[], char* choice)
 {
     int score = 0;
 
@@ -126,7 +125,7 @@ int check_word(string guess, int wordsize, int status[], string choice)
     return score;
 }
 
-void print_word(string guess, int wordsize, int status[])
+void print_word(char* guess, int wordsize, int status[])
 {
     // print word character-for-character with correct color coding, then reset terminal font to normal
     // TODO #6
