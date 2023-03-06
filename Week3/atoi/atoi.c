@@ -1,14 +1,17 @@
-#include <cs50.h>
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-int convert(string input);
+int convert(char* input);
 
 int main(void)
 {
-    string input = get_string("Enter a positive integer: ");
+    printf("Enter a positive integer: ");
+    char* input = malloc(20);
+    scanf("%s", input);
+
 
     for (int i = 0, n = strlen(input); i < n; i++)
     {
@@ -23,7 +26,7 @@ int main(void)
     printf("%i\n", convert(input));
 }
 
-int convert(string input)
+int convert(char* input)
 {
     // TODO
 }
