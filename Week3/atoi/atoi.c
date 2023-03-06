@@ -24,6 +24,7 @@ int main(void)
 
     // Convert string to int
     printf("%i\n", convert(input));
+    free(input);
 }
 
 int convert(char* input)
