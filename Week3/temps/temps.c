@@ -1,14 +1,13 @@
 // Practice working with structs
 // Practice applying sorting algorithms
 
-#include <cs50.h>
 #include <stdio.h>
 
 #define NUM_CITIES 10
 
 typedef struct
 {
-    string city;
+    char* city;
     int temp;
 }
 avg_temp;
@@ -62,5 +61,19 @@ int main(void)
 // TODO: Sort cities by temperature in descending order
 void sort_cities(void)
 {
-    // Add your code here
+    int swaps = -1;
+    while (swaps != 0)
+    {
+        swaps = 0;
+        for (size_t i = 0; i < NUM_CITIES - 1; i++)
+        {
+            if (temps[i].temp < temps[i + 1].temp)
+            {
+                avg_temp holder = temps[i];
+                temps[i] = temps[i + 1];
+                temps[i + 1] = holder;
+                swaps++;
+            }
+        }
+    }
 }
