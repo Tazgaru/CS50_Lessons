@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
     // pseudorandomly select a word for this game
     srand(time(NULL));
     char* choice = options[rand() % LISTSIZE];
-    printf("%s", choice); // -------------------------------- tools
+    //printf("%s", choice); // -------------------------------- tools
 
     // allow one more guess than the length of the word
     int guesses = wordsize + 1;
@@ -154,20 +154,15 @@ int check_word(char* guess, int wordsize, int status[], char* choice)
                 if (i == j)
                 {
                     status[i] = 2;
-                    score += 2;
                     break;
                 }
                 else
                 {
                     status[i] = 1;
-                    score++;
-                    break;
                 }
-                
             }
-            
         }
-        
+        score += status[i];
     }
     return score;
 }
