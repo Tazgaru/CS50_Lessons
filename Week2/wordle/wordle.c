@@ -107,7 +107,14 @@ int main(int argc, char* argv[])
     }
 
     // Print the game's result
-    // TODO #7
+    if (won == 1)
+    {
+        printf(GREEN" You Win "RESET"\n");
+    }else
+    {
+        printf(RED" You Lose "RESET"\n");
+    }
+    
 
     // that's all folks!
     return 0;
