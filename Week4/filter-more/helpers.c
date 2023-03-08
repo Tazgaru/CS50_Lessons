@@ -3,7 +3,23 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    return;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (image[i][j].rgbtRed == 0 && image[i][j].rgbtGreen == 0 && image[i][j].rgbtBlue == 0)
+            {
+                break;
+            }
+            
+            int avrg_col = (image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue) / 3;
+            image[i][j].rgbtRed = avrg_col;
+            image[i][j].rgbtGreen = avrg_col;
+            image[i][j].rgbtBlue = avrg_col;
+        }
+        
+    }
+    
 }
 
 // Reflect image horizontally
