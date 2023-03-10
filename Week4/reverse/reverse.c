@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     // Read header
     WAVHEADER in_header;
-    fread(&in_header, header_size, 1, fpin);
+    fread(&in_header, 1, header_size, fpin);
 
     // Use check_format to ensure WAV format
     if (!check_format(in_header))
@@ -38,16 +38,23 @@ int main(int argc, char *argv[])
     }
 
     // Open output file for writing
-    // TODO #5
+    FILE *fpout = fopen(argv[2], "a");
+    if (fpout == NULL)
+    {
+        printf("Could not create output file pointer\n");
+        return 1;
+    }
 
     // Write header to file
-    // TODO #6
+    fwrite(&in_header, 1, header_size, fpout);
 
     // Use get_block_size to calculate size of block
     // TODO #7
 
     // Write reversed audio to file
     // TODO #8
+    fclose(fpin);
+    fclose(fpout);
 }
 
 int check_format(WAVHEADER header)
