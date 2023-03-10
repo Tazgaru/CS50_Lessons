@@ -51,4 +51,9 @@ int main(int argc, char *argv[])
             fwrite(bytes_buffer, size_item, size_buffer, fpout);
         }
     }
+    if (fpout != NULL)
+    {
+        fclose(fpout);
+    }
+    fclose(fpin);
 }
