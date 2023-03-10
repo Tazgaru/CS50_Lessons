@@ -52,7 +52,20 @@ int main(int argc, char *argv[])
     int block_size = get_block_size(in_header);
 
     // Write reversed audio to file
-    // TODO #8
+    int data_size = in_header.chunkSize + 8 - header_size; // chunk size is total file size -8 bytes
+    int block_count = data_size / block_size;
+
+    BYTE block_buffer[block_size];
+
+    fseek(fpin, -block_size, SEEK_END); // go to start of last block in file
+
+    for (int i = 0; i < block_count; i ++)
+    {
+        fread(block_buffer, 1, block_size, fpin);
+        fseek(fpin, -block_size * 2, SEEK_CUR);
+        fwrite(block_buffer, 1, block_size, fpout);
+    }
+
     fclose(fpin);
     fclose(fpout);
 }
