@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
         printf("Could not load %s.\n", dictionary);
         return 1;
     }
+    print_list_array(); // ---------------------------------------------------------------------- tools
 
     // Calculate time to load dictionary
     time_load = calculate(&before, &after);
@@ -119,7 +120,7 @@ int main(int argc, char *argv[])
             // Print word if misspelled
             if (misspelled)
             {
-                printf("%s\n", word);
+                //printf("%s\n", word); ---------------------------- temp commented to get clear output
                 misspellings++;
             }
 
@@ -157,7 +158,7 @@ int main(int argc, char *argv[])
     if (!unloaded)
     {
         printf("Could not unload %s.\n", dictionary);
-        return 1;
+        //return 1;
     }
 
     // Calculate time to unload dictionary
