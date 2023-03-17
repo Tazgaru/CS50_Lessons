@@ -17,7 +17,7 @@ typedef struct node
 node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = 100;
 
 // Hash table
 node *table[N];
@@ -33,7 +33,14 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
-    return toupper(word[0]) - 'A';
+    int hashNum = 0;
+
+    while (*word != '\n')
+    {
+        hashNum += *word++;
+    }
+
+    return hashNum % N;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -98,13 +105,16 @@ void print_list_array()
 {
     for (int i = 0; i < N; i++)
     {
+        printf("%i - ", i);
         node *ptr = table[i];
 
         while (ptr != NULL)
         {
-            printf("%s", ptr->word);
+            char *word = ptr->word;
+            word[strcspn(word, "\n")] = 0;
+            printf(".");
             ptr = ptr->next;
         }
-        printf("\n");
+        printf("\n\n");
     }
 }
