@@ -15,5 +15,6 @@ unsigned int hash(const char *word);
 bool load(const char *dictionary);
 unsigned int size(void);
 bool unload(void);
+void print_list_array(); // ---------------------------------------------------------------- tools
 
 #endif // DICTIONARY_H
